@@ -17,4 +17,14 @@ describe("QueryProcessor", () => {
             "writer in the English language and the world's pre-eminent dramatist."
           ));
     });
+
+    test('should return andrew id description', () => {
+        const query = "andrew id";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "Your Andrew ID is an identification specific to your student account " +
+            "at Carnegie Mellon University. It is usually represented as the first letter " +
+            "of your first name followed by your last name."
+          ));
+    });
 });

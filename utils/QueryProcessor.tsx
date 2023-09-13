@@ -6,6 +6,13 @@ export default function QueryProcessor(query: string): string {
       "writer in the English language and the world's pre-eminent dramatist."
     );
   }
+  if (query.toLowerCase().includes("andrew id")) {
+    return (
+      "Your Andrew ID is an identification specific to your student account " +
+      "at Carnegie Mellon University. It is usually represented as the first letter " +
+      "of your first name followed by your last name."
+    );
+  }
 
   return "";
 }
