@@ -42,10 +42,6 @@ describe("QueryProcessor", () => {
     });
 
     test('should get biggest number', () => {
-        const query = "Which of the following numbers is the largest";
-        const response: string = QueryProcessor(query);
-        expect(response).toBe((
-            ""
-          ));
+        expect(QueryProcessor("Which of the following numbers is the largest: 9, 65, 67?")).toEqual("67");
     });
 });
