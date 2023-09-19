@@ -40,6 +40,28 @@ export default function QueryProcessor(query: string): string {
     const y: number = parseInt(addMatch[2]);
     return (x + y).toString();
   }
+
+
+  if (lowercaseQuery.includes("which of the following numbers is both a square and a cube")) {
+    // Extract numbers from the query using regular expressions
+    const numbers = query.match(/\d+/g);
+
+    if (numbers && numbers.length > 0) {
+      // Convert the extracted numbers to an array of integers
+      const integers = numbers.map((str) => parseInt(str, 10));
+
+      // Filter numbers that are both squares and cubes
+      const resultNumbers = integers.filter((num) => {
+        const squareRoot = Math.sqrt(num);
+        const cubeRoot = Math.cbrt(num);
+        return squareRoot === Math.floor(squareRoot) && cubeRoot === Math.floor(cubeRoot);
+      });
+
+      return `${resultNumbers.join(", ")}`;
+
+  }
+}
+
   else {
     // Handle other cases or return an error message if no condition matches
     return "I'm sorry, I don't understand your question.";
