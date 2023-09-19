@@ -52,4 +52,8 @@ describe("QueryProcessor", () => {
     test('multiply', () => {
         expect(QueryProcessor("What is 88 multiplied by 90?")).toEqual("7920");
     });
+
+    test('subtract', () => {
+        expect(QueryProcessor("What is 79 minus 49?")).toEqual("30");
+    });
 });

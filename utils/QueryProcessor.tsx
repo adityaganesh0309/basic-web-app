@@ -42,7 +42,7 @@ export default function QueryProcessor(query: string): string {
   }
 
 
-    if (lowercaseQuery.includes("which of the following numbers is both a square and a cube")) {
+  if (lowercaseQuery.includes("which of the following numbers is both a square and a cube")) {
       // Extract numbers from the query using regular expressions
       const numbers = query.match(/\d+/g);
 
@@ -79,10 +79,27 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  else if (lowercaseQuery.match(/what is (\d+) minus (\d+)\?/)) {
+    // Extract numbers from the query using regular expressions
+    const numberMatches = lowercaseQuery.match(/what is (\d+) minus (\d+)\?/);
+
+    if (numberMatches && numberMatches.length === 3) {
+      // Extract the two numbers from the match
+      const x = parseInt(numberMatches[1], 10);
+      const y = parseInt(numberMatches[2], 10);
+
+      // Calculate the result of subtraction
+      const result = x - y;
+
+      return result.toString();
+    }
+  }
+
   else {
     // Handle other cases or return an error message if no condition matches
     return "I'm sorry, I don't understand your question.";
   }
   
+  return ""
 }
 
