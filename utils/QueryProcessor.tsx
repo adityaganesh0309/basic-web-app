@@ -18,5 +18,19 @@ export default function QueryProcessor(query: string): string {
       "Aditya"
     );
   }
-  return "";
+  else if (query.toLowerCase().includes("Which of the following numbers is the largest")) {
+    return (
+      ""
+    );
+  }
+
+  const addMatch = query.match(/What is (\d+) plus (\d+)/);
+  if (addMatch) {
+    const x: number = parseInt(addMatch[1]);
+    const y: number = parseInt(addMatch[2]);
+    return (x + y).toString();
+  }
+  
+  return ""
+  
 }
