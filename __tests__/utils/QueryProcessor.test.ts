@@ -56,4 +56,8 @@ describe("QueryProcessor", () => {
     test('subtract', () => {
         expect(QueryProcessor("What is 79 minus 49?")).toEqual("30");
     });
+
+    test('is prime', () => {
+        expect(QueryProcessor("Which of the following numbers are primes: 99, 43, 67, 85, 32?")).toEqual("43, 67");
+    });
 });

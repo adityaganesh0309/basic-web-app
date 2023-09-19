@@ -1,3 +1,23 @@
+function isPrime(num: number): boolean {
+  if (num <= 1) {
+    return false;
+  }
+  if (num <= 3) {
+    return true;
+  }
+  if (num % 2 === 0 || num % 3 === 0) {
+    return false;
+  }
+  let i = 5;
+  while (i * i <= num) {
+    if (num % i === 0 || num % (i + 2) === 0) {
+      return false;
+    }
+    i += 6;
+  }
+  return true;
+}
+
 export default function QueryProcessor(query: string): string {
   const lowercaseQuery = query.toLowerCase();
 
@@ -92,6 +112,24 @@ export default function QueryProcessor(query: string): string {
       const result = x - y;
 
       return result.toString();
+    }
+  }
+
+  else if (lowercaseQuery.includes("which of the following numbers are primes")) {
+    // Extract numbers from the query using regular expressions
+    const numbers = query.match(/\d+/g);
+
+    if (numbers && numbers.length > 0) {
+      // Convert the extracted numbers to an array of integers
+      const integers = numbers.map((str) => parseInt(str, 10));
+
+      // Filter numbers that are prime
+      const primeNumbers = integers.filter((num) => isPrime(num));
+
+      if (primeNumbers.length > 0) {
+        return `${primeNumbers.join(", ")}`;
+      } 
+
     }
   }
 
