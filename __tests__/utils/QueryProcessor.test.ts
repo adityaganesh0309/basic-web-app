@@ -27,4 +27,12 @@ describe("QueryProcessor", () => {
             "of your first name followed by your last name."
           ));
     });
+
+    test('should answer name', () => {
+        const query = "What is your name?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "Aditya"
+          ));
+    });
 });
