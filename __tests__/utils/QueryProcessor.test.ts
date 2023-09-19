@@ -48,4 +48,8 @@ describe("QueryProcessor", () => {
     test('should get the square and cube', () => {
         expect(QueryProcessor("Which of the following numbers is both a square and a cube: 457, 64, 1849, 742, 1236, 1000, 2749?")).toEqual("64");
     });
+
+    test('multiply', () => {
+        expect(QueryProcessor("What is 88 multiplied by 90?")).toEqual("7920");
+    });
 });

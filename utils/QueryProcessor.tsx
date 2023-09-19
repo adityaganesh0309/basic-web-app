@@ -42,25 +42,42 @@ export default function QueryProcessor(query: string): string {
   }
 
 
-  if (lowercaseQuery.includes("which of the following numbers is both a square and a cube")) {
-    // Extract numbers from the query using regular expressions
-    const numbers = query.match(/\d+/g);
+    if (lowercaseQuery.includes("which of the following numbers is both a square and a cube")) {
+      // Extract numbers from the query using regular expressions
+      const numbers = query.match(/\d+/g);
 
-    if (numbers && numbers.length > 0) {
-      // Convert the extracted numbers to an array of integers
-      const integers = numbers.map((str) => parseInt(str, 10));
+      if (numbers && numbers.length > 0) {
+        // Convert the extracted numbers to an array of integers
+        const integers = numbers.map((str) => parseInt(str, 10));
 
-      // Filter numbers that are both squares and cubes
-      const resultNumbers = integers.filter((num) => {
-        const squareRoot = Math.sqrt(num);
-        const cubeRoot = Math.cbrt(num);
-        return squareRoot === Math.floor(squareRoot) && cubeRoot === Math.floor(cubeRoot);
-      });
+        // Filter numbers that are both squares and cubes
+        const resultNumbers = integers.filter((num) => {
+          const squareRoot = Math.sqrt(num);
+          const cubeRoot = Math.cbrt(num);
+          return squareRoot === Math.floor(squareRoot) && cubeRoot === Math.floor(cubeRoot);
+        });
 
-      return `${resultNumbers.join(", ")}`;
+        return `${resultNumbers.join(", ")}`;
 
+    }
   }
-}
+
+  else if (lowercaseQuery.match(/what is (\d+) multiplied by (\d+)\?/)) {
+    // Extract numbers from the query using regular expressions
+    const numberMatches = lowercaseQuery.match(/what is (\d+) multiplied by (\d+)\?/);
+
+    if (numberMatches && numberMatches.length === 3) {
+      // Extract the two numbers from the match
+      const x = parseInt(numberMatches[1], 10);
+      const y = parseInt(numberMatches[2], 10);
+
+      // Calculate the result of multiplication
+      const result = x * y;
+
+      return result.toString();
+    
+    }
+  }
 
   else {
     // Handle other cases or return an error message if no condition matches
